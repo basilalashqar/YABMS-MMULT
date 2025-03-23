@@ -1,0 +1,51 @@
+Command used: ./mmult -i naive --M 2500 --N 3000 --P 2100 --nruns 10 --load
+--------------------------------------------------------------------------------
+Setting up schedulers and affinity:
+  * Setting the niceness level:
+      -> trying niceness level = -20
+      -> trying niceness level = -19
+      -> trying niceness level = -18
+      -> trying niceness level = -17
+      -> trying niceness level = -16
+      -> trying niceness level = -15
+      -> trying niceness level = -14
+      -> trying niceness level = -13
+      -> trying niceness level = -12
+      -> trying niceness level = -11
+      -> trying niceness level = -10
+      -> trying niceness level = -9
+      -> trying niceness level = -8
+      -> trying niceness level = -7
+      -> trying niceness level = -6
+      -> trying niceness level = -5
+      -> trying niceness level = -4
+      -> trying niceness level = -3
+      -> trying niceness level = -2
+      -> trying niceness level = -1
+      -> trying niceness level = 0
+    + Process has niceness level = 0
+  * Setting up FIFO scheduling scheme and high priority ... Failed
+  * Setting up scheduling affinity ... Succeeded
+
+Loading matrix A from A.bin and matrix B from B.bin
+Running "scalar_naive" implementation:
+  * Invoking the implementation 10 times .... Finished
+  * Verifying results .... Success
+Computed result written to computed.bin
+Waiting for computed.bin to reach 21000000 bytes...
+computed.bin is ready (size = 21000000 bytes).
+Comparison with python_ref.bin: Success (max diff = 0.00341797)
+  * Running statistics:
+    + Starting statistics run number #1:
+      - Standard deviation = 1000481063
+      - Average = 59583465540
+      - Number of active elements = 10
+      - Number of masked-off = 0
+  * Runtimes (MATCHING):  59583465540 ns
+  * Dumping runtime informations:
+    - Filename: scalar_naive_runtimes.csv
+    - Opening file .... Succeeded
+    - Writing runtimes ... Finished
+    - Closing file handle .... Finished
+
+

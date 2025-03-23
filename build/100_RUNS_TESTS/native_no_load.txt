@@ -1,0 +1,55 @@
+Command used: ./mmult -i naive --M 2500 --N 3000 --P 2100 --nruns 100
+--------------------------------------------------------------------------------
+Setting up schedulers and affinity:
+  * Setting the niceness level:
+      -> trying niceness level = -20
+      -> trying niceness level = -19
+      -> trying niceness level = -18
+      -> trying niceness level = -17
+      -> trying niceness level = -16
+      -> trying niceness level = -15
+      -> trying niceness level = -14
+      -> trying niceness level = -13
+      -> trying niceness level = -12
+      -> trying niceness level = -11
+      -> trying niceness level = -10
+      -> trying niceness level = -9
+      -> trying niceness level = -8
+      -> trying niceness level = -7
+      -> trying niceness level = -6
+      -> trying niceness level = -5
+      -> trying niceness level = -4
+      -> trying niceness level = -3
+      -> trying niceness level = -2
+      -> trying niceness level = -1
+      -> trying niceness level = 0
+    + Process has niceness level = 0
+  * Setting up FIFO scheduling scheme and high priority ... Failed
+  * Setting up scheduling affinity ... Succeeded
+
+Running "scalar_naive" implementation:
+  * Invoking the implementation 100 times .... Finished
+  * Verifying results .... Success
+Computed result written to computed.bin
+Waiting for computed.bin to reach 21000000 bytes...
+computed.bin is ready (size = 21000000 bytes).
+Error: Incomplete data read from python_ref.bin (expected 5250000 elements, got 1174602)
+  * Running statistics:
+    + Starting statistics run number #1:
+      - Standard deviation = 346115630
+      - Average = 60836381089
+      - Number of active elements = 100
+      - Number of masked-off = 18
+    + Starting statistics run number #2:
+      - Standard deviation = 422777136
+      - Average = 60533595583
+      - Number of active elements = 82
+      - Number of masked-off = 0
+  * Runtimes (MATCHING):  60533595583 ns
+  * Dumping runtime informations:
+    - Filename: scalar_naive_runtimes.csv
+    - Opening file .... Succeeded
+    - Writing runtimes ... Finished
+    - Closing file handle .... Finished
+
+

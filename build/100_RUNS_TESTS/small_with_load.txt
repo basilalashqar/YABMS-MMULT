@@ -1,0 +1,59 @@
+Command used: ./mmult -i naive --M 121 --N 180 --P 115 --nruns 100 --load
+--------------------------------------------------------------------------------
+
+    + Process has niceness level = 0
+  * Setting up FIFO scheduling scheme and high priority ... Failed
+  * Setting up scheduling affinity ... Succeeded
+
+Loading matrix A from A.bin and matrix B from B.bin
+Running "scalar_naive" implementation:
+  * Invoking the implementation 100 times .... Finished
+  * Verifying results .... Success
+Computed result written to computed.bin
+Waiting for computed.bin to reach 55660 bytes...
+computed.bin is ready (size = 55660 bytes).
+Comparison with python_ref.bin: Success (max diff = 1.14441e-05)
+  * Running statistics:
+    + Starting statistics run number #1:
+      - Standard deviation = 622801
+      - Average = 8833285
+      - Number of active elements = 100
+      - Number of masked-off = 1
+    + Starting statistics run number #2:
+      - Standard deviation = 249641
+      - Average = 8775884
+      - Number of active elements = 99
+      - Number of masked-off = 3
+    + Starting statistics run number #3:
+      - Standard deviation = 130169
+      - Average = 8740253
+      - Number of active elements = 96
+      - Number of masked-off = 2
+    + Starting statistics run number #4:
+      - Standard deviation = 92404
+      - Average = 8726994
+      - Number of active elements = 94
+      - Number of masked-off = 3
+    + Starting statistics run number #5:
+      - Standard deviation = 71500
+      - Average = 8716250
+      - Number of active elements = 91
+      - Number of masked-off = 3
+    + Starting statistics run number #6:
+      - Standard deviation = 55000
+      - Average = 8707617
+      - Number of active elements = 88
+      - Number of masked-off = 2
+    + Starting statistics run number #7:
+      - Standard deviation = 45831
+      - Average = 8702866
+      - Number of active elements = 86
+      - Number of masked-off = 0
+  * Runtimes (MATCHING):  8702866 ns
+  * Dumping runtime informations:
+    - Filename: scalar_naive_runtimes.csv
+    - Opening file .... Succeeded
+    - Writing runtimes ... Finished
+    - Closing file handle .... Finished
+
+
