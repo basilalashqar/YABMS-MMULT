@@ -1,0 +1,64 @@
+Command used: ./mmult -i naive --M 16 --N 12 --P 8 --nruns 100 --load
+--------------------------------------------------------------------------------
+
+    + Process has niceness level = 0
+  * Setting up FIFO scheduling scheme and high priority ... Failed
+  * Setting up scheduling affinity ... Succeeded
+
+Loading matrix A from A.bin and matrix B from B.bin
+Running "scalar_naive" implementation:
+  * Invoking the implementation 100 times .... Finished
+  * Verifying results .... Success
+Computed result written to computed.bin
+Waiting for computed.bin to reach 512 bytes...
+computed.bin is ready (size = 512 bytes).
+Comparison with python_ref.bin: Success (max diff = 4.76837e-07)
+  * Running statistics:
+    + Starting statistics run number #1:
+      - Standard deviation = 13646
+      - Average = 7109
+      - Number of active elements = 100
+      - Number of masked-off = 1
+    + Starting statistics run number #2:
+      - Standard deviation = 1050
+      - Average = 5741
+      - Number of active elements = 99
+      - Number of masked-off = 2
+    + Starting statistics run number #3:
+      - Standard deviation = 358
+      - Average = 5599
+      - Number of active elements = 97
+      - Number of masked-off = 2
+    + Starting statistics run number #4:
+      - Standard deviation = 190
+      - Average = 5557
+      - Number of active elements = 95
+      - Number of masked-off = 2
+    + Starting statistics run number #5:
+      - Standard deviation = 130
+      - Average = 5555
+      - Number of active elements = 93
+      - Number of masked-off = 4
+    + Starting statistics run number #6:
+      - Standard deviation = 90
+      - Average = 5545
+      - Number of active elements = 89
+      - Number of masked-off = 4
+    + Starting statistics run number #7:
+      - Standard deviation = 60
+      - Average = 5559
+      - Number of active elements = 85
+      - Number of masked-off = 1
+    + Starting statistics run number #8:
+      - Standard deviation = 55
+      - Average = 5562
+      - Number of active elements = 84
+      - Number of masked-off = 0
+  * Runtimes (MATCHING):  5562 ns
+  * Dumping runtime informations:
+    - Filename: scalar_naive_runtimes.csv
+    - Opening file .... Succeeded
+    - Writing runtimes ... Finished
+    - Closing file handle .... Finished
+
+

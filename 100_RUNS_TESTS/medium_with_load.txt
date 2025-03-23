@@ -1,0 +1,44 @@
+Command used: ./mmult -i naive --M 550 --N 620 --P 480 --nruns 100 --load
+--------------------------------------------------------------------------------
+
+    + Process has niceness level = 0
+  * Setting up FIFO scheduling scheme and high priority ... Failed
+  * Setting up scheduling affinity ... Succeeded
+
+Loading matrix A from A.bin and matrix B from B.bin
+Running "scalar_naive" implementation:
+  * Invoking the implementation 100 times .... Finished
+  * Verifying results .... Success
+Computed result written to computed.bin
+Waiting for computed.bin to reach 1056000 bytes...
+computed.bin is ready (size = 1056000 bytes).
+Comparison with python_ref.bin: Success (max diff = 0.000335693)
+  * Running statistics:
+    + Starting statistics run number #1:
+      - Standard deviation = 4844725
+      - Average = 573574411
+      - Number of active elements = 100
+      - Number of masked-off = 1
+    + Starting statistics run number #2:
+      - Standard deviation = 2208613
+      - Average = 573140470
+      - Number of active elements = 99
+      - Number of masked-off = 1
+    + Starting statistics run number #3:
+      - Standard deviation = 1895747
+      - Average = 573024394
+      - Number of active elements = 98
+      - Number of masked-off = 1
+    + Starting statistics run number #4:
+      - Standard deviation = 1795211
+      - Average = 572959861
+      - Number of active elements = 97
+      - Number of masked-off = 0
+  * Runtimes (MATCHING):  572959861 ns
+  * Dumping runtime informations:
+    - Filename: scalar_naive_runtimes.csv
+    - Opening file .... Succeeded
+    - Writing runtimes ... Finished
+    - Closing file handle .... Finished
+
+

@@ -1,0 +1,28 @@
+Command used: ./mmult -i naive --M 121 --N 180 --P 115 --nruns 10
+--------------------------------------------------------------------------------
+
+    + Process has niceness level = 0
+  * Setting up FIFO scheduling scheme and high priority ... Failed
+  * Setting up scheduling affinity ... Succeeded
+
+Running "scalar_naive" implementation:
+  * Invoking the implementation 10 times .... Finished
+  * Verifying results .... Success
+Computed result written to computed.bin
+Waiting for computed.bin to reach 55660 bytes...
+computed.bin is ready (size = 55660 bytes).
+Error: Incomplete data read from python_ref.bin (expected 13915 elements, got 128)
+  * Running statistics:
+    + Starting statistics run number #1:
+      - Standard deviation = 1573572
+      - Average = 9519036
+      - Number of active elements = 10
+      - Number of masked-off = 0
+  * Runtimes (MATCHING):  9519036 ns
+  * Dumping runtime informations:
+    - Filename: scalar_naive_runtimes.csv
+    - Opening file .... Succeeded
+    - Writing runtimes ... Finished
+    - Closing file handle .... Finished
+
+

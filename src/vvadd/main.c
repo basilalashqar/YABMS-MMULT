@@ -3,23 +3,22 @@
  * Author: Khalid Al-Hawaj
  * Date  : 12 Nov. 2023
  *
- * This file is structured to call different implementation of the same
- * algorithm/microbenchmark. The file will allocate 3 output arrays one
- * for: scalar naive impl, scalar opt impl, vectorized impl. As it stands
- * the file will allocate and initialize with random data one input array
- * of type 'byte'. To check correctness, the file allocate a 'ref' array;
- * to calculate this 'ref' array, the file will invoke a ref_impl, which
- * is supposed to be functionally correct and act as a reference for
- * the functionality. The file also adds a guard word at the end of the
- * output arrays to check for buffer overruns.
+ * This file is structured to call different implementations of the same
+ * algorithm/microbenchmark. The file will allocate 3 output arrays: one
+ * for the scalar naive implementation, one for the scalar optimized implementation,
+ * and one for the vectorized implementation. As it stands, the file will allocate and
+ * initialize with random data two input arrays of type 'byte' (which now represent
+ * matrices A and B). To check correctness, the file allocates a 'ref' array;
+ * to calculate this 'ref' array, the file invokes a ref_impl, which is supposed to be
+ * functionally correct and act as a reference for the functionality.
+ * The file also adds a guard word at the end of the output arrays to check for buffer overruns.
  *
- * The file will invoke each implementation n number of times. It will
- * record the runtime of _each_ invocation through the following Linux
- * API:
+ * The file will invoke each implementation n number of times. It will record the runtime of
+ * _each_ invocation through the following Linux API:
  *    clock_gettime(), with the clk_id set to CLOCK_MONOTONIC
  * Then, the file will calculate the standard deviation and calculate
  * an outlier-free average by excluding runtimes that are larger than
- * 2 standard deviation of the original average.
+ * 2 standard deviations of the original average.
  */
 
 /* Set features         */
@@ -280,8 +279,8 @@ int main(int argc, char** argv)
   /* Start execution */
   printf("Running \"%s\" implementation:\n", impl_str);
 
-  printf("  * Invoking the implementation %d times .... ", num_runs);
-  for (int i = 0; i < num_runs; i++) {
+  printf("  * Invoking the implementation %d times .... ", nruns);
+  for (int i = 0; i < nruns; i++) {
     __SET_START_TIME();
     for (int j = 0; j < 16; j++) {
       (*impl)(&args);
@@ -318,7 +317,7 @@ int main(int argc, char** argv)
   int      n_msked =  0;
   int      n_stats =  0;
 
-  for (int i = 0; i < num_runs; i++)
+  for (int i = 0; i < nruns; i++)
     runtimes_mask[i] = true;
 
   printf("  * Running statistics:\n");
@@ -329,7 +328,7 @@ int main(int argc, char** argv)
     avg   =  0;
 
     /*   -> Calculate min, max, and avg */
-    for (int i = 0; i < num_runs; i++) {
+    for (int i = 0; i < nruns; i++) {
       if (runtimes_mask[i]) {
         if (runtimes[i] < min) {
           min = runtimes[i];
@@ -347,7 +346,7 @@ int main(int argc, char** argv)
     std   =  0;
     std_n =  0;
 
-    for (int i = 0; i < num_runs; i++) {
+    for (int i = 0; i < nruns; i++) {
       if (runtimes_mask[i]) {
         std   += ((runtimes[i] - avg) *
                   (runtimes[i] - avg));
@@ -358,15 +357,15 @@ int main(int argc, char** argv)
 
     /*   -> Calculate outlier-free average (mean) */
     n_msked = 0;
-    for (int i = 0; i < num_runs; i++) {
+    for (int i = 0; i < nruns; i++) {
       if (runtimes_mask[i]) {
         if (runtimes[i] > avg) {
-          if ((runtimes[i] - avg) > (nstd * std)) {
+          if ((runtimes[i] - avg) > (nstdevs * std)) {
             runtimes_mask[i] = false;
             n_msked += 1;
           }
         } else {
-          if ((avg - runtimes[i]) > (nstd * std)) {
+          if ((avg - runtimes[i]) > (nstdevs * std)) {
             runtimes_mask[i] = false;
             n_msked += 1;
           }
@@ -399,11 +398,11 @@ int main(int argc, char** argv)
     fprintf(fp, "impl,%s", impl_str);
 
     fprintf(fp, "\n");
-    fprintf(fp, "num_of_runs,%d", num_runs);
+    fprintf(fp, "num_of_runs,%d", nruns);
 
     fprintf(fp, "\n");
     fprintf(fp, "runtimes");
-    for (int i = 0; i < num_runs; i++) {
+    for (int i = 0; i < nruns; i++) {
       fprintf(fp, ", ");
       fprintf(fp, "%" PRIu64 "", runtimes[i]);
     }
@@ -431,3 +430,4 @@ int main(int argc, char** argv)
   /* Done */
   return 0;
 }
+
